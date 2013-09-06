@@ -229,7 +229,7 @@ obj/local/armeabi/objs/game_shared/__/__/Classes/MainScene.o: \
  /Users/nakamurashinji/Documents/cocos2d-2.1rc0-x-2.1.3/cocos2dx/touch_dispatcher/CCTouchDispatcher.h \
  /Users/nakamurashinji/Documents/cocos2d-2.1rc0-x-2.1.3/cocos2dx/CCScheduler.h \
  /Users/nakamurashinji/Documents/cocos2d-2.1rc0-x-2.1.3/cocos2dx/support/data_support/uthash.h \
- jni/../../Classes/NativeBridge.h
+ jni/../../Classes/SubScene.h jni/../../Classes/NativeBridge.h
 
 jni/../../Classes/MainScene.h:
 
@@ -690,5 +690,7 @@ jni/../../Classes/MainScene.h:
 /Users/nakamurashinji/Documents/cocos2d-2.1rc0-x-2.1.3/cocos2dx/CCScheduler.h:
 
 /Users/nakamurashinji/Documents/cocos2d-2.1rc0-x-2.1.3/cocos2dx/support/data_support/uthash.h:
+
+jni/../../Classes/SubScene.h:
 
 jni/../../Classes/NativeBridge.h:

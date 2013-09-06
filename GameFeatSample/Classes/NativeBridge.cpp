@@ -44,3 +44,31 @@ void NativeBridge::showGameFeat()
         t.env->CallStaticVoidMethod(t.classID, t.methodID);
     }
 }
+
+void NativeBridge::showAllGameFeat()
+{
+    JniMethodInfo t;
+    
+    if (JniHelper::getStaticMethodInfo(t, CLASS_NAME, "showAllGameFeatJNI", "()V"))
+    {
+        t.env->CallStaticVoidMethod(t.classID, t.methodID);
+    }
+}
+
+void NativeBridge::hideAllGameFeat()
+{
+}
+
+void NativeBridge::showIconGameFeat()
+{
+    JniMethodInfo t;
+    
+    if (JniHelper::getStaticMethodInfo(t, CLASS_NAME, "showIconGameFeatJNI", "()V"))
+    {
+        t.env->CallStaticVoidMethod(t.classID, t.methodID);
+    }
+}
+
+void NativeBridge::hideIconGameFeat()
+{
+}

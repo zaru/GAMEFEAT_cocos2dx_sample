@@ -45,7 +45,15 @@
 		</intent-filter>
 		</receiver>
 		<!-- GameFeat END -->
-        
+		<!--  All Game Feat START -->
+        <activity
+			android:name="jp.basicinc.gamefeat.android.sdk.view.GameFeatPopupActivity"
+			android:configChanges="orientation|keyboardHidden"
+			android:theme="@android:style/Theme.Translucent"
+			android:label="GameFeat" >
+		</activity>
+		<!-- All Game Feat END -->
+
     </application>
     <supports-screens android:largeScreens="true"
                       android:smallScreens="true"

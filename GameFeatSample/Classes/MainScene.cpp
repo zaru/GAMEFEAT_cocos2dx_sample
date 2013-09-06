@@ -38,12 +38,14 @@ bool MainScene::init()
     
     //画面移動
     CCMenuItemImage* nextButton = CCMenuItemImage::create("bGameFeat1.png", "bGameFeat2.png", this, menu_selector(MainScene::openGameFeat));
-    nextButton->setPosition(ccp(size.width/2, size.height/3));
+    nextButton->setPosition(ccp(size.width/2, size.height/9));
     nextButton->setTag(tag_next);
     
     CCMenu* menu = CCMenu::create(gamefeatButton,nextButton,NULL);
     menu->setPosition(CCPointZero);
     this->addChild(menu);
+    
+    NativeBridge::showIconGameFeat();
     
     return true;
 }
@@ -54,6 +56,8 @@ void MainScene::openGameFeat(CCObject* pSender)
     if (tag == tag_gamefeat) NativeBridge::showGameFeat();
     else if (tag == tag_next)
     {
+        NativeBridge::hideIconGameFeat();
+        
         CCScene* scene = SubScene::scene();
         CCDirector::sharedDirector()->replaceScene(scene);
     }

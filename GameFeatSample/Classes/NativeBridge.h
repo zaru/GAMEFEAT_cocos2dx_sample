@@ -11,4 +11,8 @@ class NativeBridge
 public:
     static const char* getAppVersion();
     static void showGameFeat();
+    static void showAllGameFeat();
+    static void hideAllGameFeat();
+    static void showIconGameFeat();
+    static void hideIconGameFeat();
 };

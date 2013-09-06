@@ -18,6 +18,8 @@
 @synthesize window;
 @synthesize viewController;
 
+#define GF_SITE_ID @"1580"
+
 #pragma mark -
 #pragma mark Application lifecycle
 
@@ -43,6 +45,53 @@ static AppDelegate s_sharedApplication;
     viewController.wantsFullScreenLayout = YES;
     viewController.view = __glView;
 
+    /*********************************************************************/
+    /*
+     全画面GameFeat
+    */
+    // 全画面広告を初期化
+    self.popupView = [[GFPopupView alloc] init];
+    
+    // n回に1回表示するタイミング設定（1にすると毎回表示されます）
+    [self.popupView setSchedule:2];
+    
+    // 全画面広告の表示アニメーションを無効にします（デフォルトはアニメーション有効 = YES）
+    [self.popupView setAnimation:NO];
+    
+    // 全画面広告の表示
+    if ([self.popupView loadAd:GF_SITE_ID]) {
+        [viewController.view addSubview:self.popupView];
+    }
+    
+    //隠す
+    [self hideGameFeat];
+    /*********************************************************************/
+    
+    /*********************************************************************/
+    /*
+     アイコンGameFeat
+     */
+    // GFIconControllerの初期化
+    self.gfIconController = [[GFIconController alloc] init];
+    
+    // アイコンの自動更新間隔を指定（デフォルトで30秒／最短10秒）
+    [self.gfIconController setRefreshTiming:10];
+    
+    // アイコン下のアプリ名テキストの色をUIColorで指定出来ます（デフォルト黒）
+    [self.gfIconController setAppNameColor:[UIColor redColor]];
+    
+    // アイコンの配置位置を設定（1個〜20個まで設置出来ます）
+    {
+        self.iconView = [[[GFIconView alloc] initWithFrame:CGRectMake(18, 150, 57, 57)] autorelease];
+        [self.gfIconController addIconView:self.iconView];
+        [viewController.view addSubview:self.iconView];
+    }
+    
+    //隠す
+    [self hideIconGameFeat];
+    [self.gfIconController loadAd:GF_SITE_ID];
+    /*********************************************************************/
+    
     // Set RootViewController to window
     if ( [[UIDevice currentDevice].systemVersion floatValue] < 6.0)
     {
@@ -84,6 +133,15 @@ static AppDelegate s_sharedApplication;
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
      If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
      */
+    UIDevice *device = [UIDevice currentDevice];
+    BOOL backgroundSupported = NO;
+    if ([device respondsToSelector:@selector(isMultitaskingSupported)]) {
+        backgroundSupported = device.multitaskingSupported;
+    }
+    if (backgroundSupported) {
+        [GFController backgroundTask];
+    }
+    
     cocos2d::CCApplication::sharedApplication()->applicationDidEnterBackground();
 }
 
@@ -91,6 +149,8 @@ static AppDelegate s_sharedApplication;
     /*
      Called as part of  transition from the background to the inactive state: here you can undo many of the changes made on entering the background.
      */
+    [GFController conversionCheckStop];
+    
     cocos2d::CCApplication::sharedApplication()->applicationWillEnterForeground();
 }
 
@@ -112,11 +172,45 @@ static AppDelegate s_sharedApplication;
      cocos2d::CCDirector::sharedDirector()->purgeCachedData();
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    // アイコン広告の表示
+    [self.gfIconController loadAd:GF_SITE_ID];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    // アイコン広告の自動更新を停止
+    [self.gfIconController stopAd];
+}
 
 - (void)dealloc {
     [super dealloc];
 }
 
+- (void)showGameFeat {
+    if (self.popupView) {
+        self.popupView.hidden = NO;
+    }
+}
+
+- (void)hideGameFeat {
+    if (self.popupView) {
+        self.popupView.hidden = YES;
+    }
+}
+
+- (void)showIconGameFeat {
+    if (self.iconView) {
+        self.iconView.hidden = NO;
+    }
+}
+
+- (void)hideIconGameFeat {
+    if (self.iconView) {
+        self.iconView.hidden = YES;
+    }
+}
 
 @end
 

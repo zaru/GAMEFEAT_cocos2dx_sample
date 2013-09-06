@@ -26,11 +26,13 @@ package jp.shinji.GameFeatSample;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 import jp.basicinc.gamefeat.android.sdk.controller.GameFeatAppController;
+import jp.basicinc.gamefeat.android.sdk.view.GameFeatIconView;
 
 import android.os.Bundle;
 
 public class GameFeatSample extends Cocos2dxActivity{
 	private static GameFeatSample me = null;
+	//private static GameFeatIconAdLoader myIconAdLoader;
 
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -50,5 +52,21 @@ public class GameFeatSample extends Cocos2dxActivity{
     {
         GameFeatAppController.show(me);
     	//System.out.println("Android Device!!");
+    }
+    
+    public static void showAllGameFeatJNI()
+    {
+    	GameFeatAppController.setPopupProbability(1);
+      	GameFeatAppController.showPopupAd(me);
+    	//System.out.println("Android Device!!");
+    }
+    
+    public static void showIconGameFeatJNI()
+    {
+    	//myIconAdLoader = new GameFeatIconAdLoader();
+    	//myIconAdLoader.setRefreshInterval(10);
+    	//myIconAdLoader.setIconTextColor(Color.rgb(255, 240, 240));
+    	//((GameFeatIconView)findViewById(R.id.gf_icon1)).addLoader(myIconAdLoader);
+    	System.out.println("show IconGameFeat!!");
     }
 }
