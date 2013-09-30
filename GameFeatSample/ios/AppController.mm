@@ -44,53 +44,6 @@ static AppDelegate s_sharedApplication;
     viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
     viewController.wantsFullScreenLayout = YES;
     viewController.view = __glView;
-
-    /*********************************************************************/
-    /*
-     全画面GameFeat
-    */
-    // 全画面広告を初期化
-    self.popupView = [[GFPopupView alloc] init];
-    
-    // n回に1回表示するタイミング設定（1にすると毎回表示されます）
-    [self.popupView setSchedule:2];
-    
-    // 全画面広告の表示アニメーションを無効にします（デフォルトはアニメーション有効 = YES）
-    [self.popupView setAnimation:NO];
-    
-    // 全画面広告の表示
-    if ([self.popupView loadAd:GF_SITE_ID]) {
-        [viewController.view addSubview:self.popupView];
-    }
-    
-    //隠す
-    [self hideGameFeat];
-    /*********************************************************************/
-    
-    /*********************************************************************/
-    /*
-     アイコンGameFeat
-     */
-    // GFIconControllerの初期化
-    self.gfIconController = [[GFIconController alloc] init];
-    
-    // アイコンの自動更新間隔を指定（デフォルトで30秒／最短10秒）
-    [self.gfIconController setRefreshTiming:10];
-    
-    // アイコン下のアプリ名テキストの色をUIColorで指定出来ます（デフォルト黒）
-    [self.gfIconController setAppNameColor:[UIColor redColor]];
-    
-    // アイコンの配置位置を設定（1個〜20個まで設置出来ます）
-    {
-        self.iconView = [[[GFIconView alloc] initWithFrame:CGRectMake(18, 150, 57, 57)] autorelease];
-        [self.gfIconController addIconView:self.iconView];
-        [viewController.view addSubview:self.iconView];
-    }
-    
-    //隠す
-    [self hideIconGameFeat];
-    [self.gfIconController loadAd:GF_SITE_ID];
-    /*********************************************************************/
     
     // Set RootViewController to window
     if ( [[UIDevice currentDevice].systemVersion floatValue] < 6.0)
@@ -188,27 +141,89 @@ static AppDelegate s_sharedApplication;
     [super dealloc];
 }
 
+/**
+ * 全画面GameFeat追加
+ */
+- (void)addGameFeat {
+
+    // 全画面広告を初期化
+    self.popupView = [[GFPopupView alloc] init];
+    
+    // 毎回表示
+    [self.popupView setSchedule:1];
+    
+    //アニメーション追加
+    [self.popupView setAnimation:YES];
+    
+    // 全画面広告の表示
+    if ([self.popupView loadAd:GF_SITE_ID]) {
+        [viewController.view addSubview:self.popupView];
+    }
+    
+}
+
+/**
+ * アイコン型GameFeat追加
+ */
+- (void)addIconGameFeat {
+    
+    // GFIconControllerの初期化
+    self.gfIconController = [[GFIconController alloc] init];
+    
+    // アイコンの自動更新間隔を指定
+    [self.gfIconController setRefreshTiming:10];
+    
+    // アプリ名テキストの色指定
+    [self.gfIconController setAppNameColor:[UIColor redColor]];
+    
+    // アイコンの配置位置を設定
+    {
+        CGRect r = [[UIScreen mainScreen] bounds];
+        
+        self.iconView = [[[GFIconView alloc] initWithFrame:CGRectMake(18, 150, 57, 57)] autorelease];
+        self.iconView.center = CGPointMake(r.size.width/2, r.size.height*6/7);
+        [self.gfIconController addIconView:self.iconView];
+        [viewController.view addSubview:self.iconView];
+    }
+    
+    [self.gfIconController loadAd:GF_SITE_ID];
+}
+
+/**
+ * 全画面型GameFeat表示
+ */
 - (void)showGameFeat {
     if (self.popupView) {
-        self.popupView.hidden = NO;
+        [self hideGameFeat];
     }
+    [self addGameFeat];
 }
 
+/**
+ * 全画面型GameFeat削除
+ */
 - (void)hideGameFeat {
     if (self.popupView) {
-        self.popupView.hidden = YES;
+        [self.popupView removeFromSuperview];
     }
 }
 
+/**
+ * アイコン型GameFeat削除
+ */
 - (void)showIconGameFeat {
     if (self.iconView) {
-        self.iconView.hidden = NO;
+        [self hideIconGameFeat];
     }
+    [self addIconGameFeat];
 }
 
+/**
+ * アイコン型GameFeat削除
+ */
 - (void)hideIconGameFeat {
     if (self.iconView) {
-        self.iconView.hidden = YES;
+        [self.iconView removeFromSuperview];
     }
 }
 

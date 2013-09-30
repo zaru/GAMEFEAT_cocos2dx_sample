@@ -23,50 +23,122 @@ THE SOFTWARE.
 ****************************************************************************/
 package jp.shinji.GameFeatSample;
 
-
 import org.cocos2dx.lib.Cocos2dxActivity;
 import jp.basicinc.gamefeat.android.sdk.controller.GameFeatAppController;
 import jp.basicinc.gamefeat.android.sdk.view.GameFeatIconView;
+import jp.basicinc.gamefeat.android.sdk.controller.GameFeatIconAdLoader;
+import jp.basicinc.gamefeat.android.sdk.view.GameFeatIconView;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Handler;
+import android.provider.Settings;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.ViewGroup.MarginLayoutParams;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+
 
 public class GameFeatSample extends Cocos2dxActivity{
+	
+	private static LinearLayout container;
 	private static GameFeatSample me = null;
-	//private static GameFeatIconAdLoader myIconAdLoader;
-
+	
+	/////////////////////////////////
+	// GAMEFEAT ICON
+	/////////////////////////////////
+	GFIcons gfIcons = null;
+	
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		me = this;
+		container = new LinearLayout(me);
+		me.addContentView(container, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
 	}
 	
     static {
          System.loadLibrary("game");
     }
     
-    public static String getAppVersionInJava()
-    {
-    	return "Android Device!!";
-    }
-    
+    //================================================================================
+  	// GAMEFEAT オファーウォール表示・非表示
+  	//================================================================================
     public static void showGameFeatJNI()
     {
         GameFeatAppController.show(me);
-    	//System.out.println("Android Device!!");
     }
     
+    //================================================================================
+  	// GAMEFEAT アイコン表示・非表示
+  	//================================================================================
     public static void showAllGameFeatJNI()
     {
     	GameFeatAppController.setPopupProbability(1);
       	GameFeatAppController.showPopupAd(me);
-    	//System.out.println("Android Device!!");
     }
     
-    public static void showIconGameFeatJNI()
+    public static void hideAllGameFeatJNI()
     {
-    	//myIconAdLoader = new GameFeatIconAdLoader();
-    	//myIconAdLoader.setRefreshInterval(10);
-    	//myIconAdLoader.setIconTextColor(Color.rgb(255, 240, 240));
-    	//((GameFeatIconView)findViewById(R.id.gf_icon1)).addLoader(myIconAdLoader);
-    	System.out.println("show IconGameFeat!!");
+    }
+        
+    //================================================================================
+  	// GAMEFEAT アイコン表示・非表示
+  	//================================================================================
+	public static void showIconGameFeatJNI() {
+		Log.d("GFTEST", "SHOW_GAMEFEAT_ICONS...............................");
+		if (me.gfIcons != null) {
+			me.runOnUiThread(new Runnable(){
+				@Override
+				public void run() {
+					me.gfIcons.setVisibility(View.VISIBLE);
+	    			me.gfIcons.resume();
+				}
+			});
+		}
+		else {
+			Log.d("GFTEST", "SHOW_GAMEFEAT_ICONS_INIT...............................");
+			me.runOnUiThread(new Runnable(){
+				@Override
+	    		public void run()
+	    		{			
+	    			me.gfIcons = new GFIcons(me.getApplicationContext());
+	    			container.setGravity(Gravity.BOTTOM);
+	    			container.addView(me.gfIcons);
+	    			me.gfIcons.resume();
+	    		}
+			});
+		}
+
+		
+	}
+	
+	public static void hideIconGameFeatJNI() {
+		Log.d("GFTEST", "HIDE_GAMEFEAT_ICONS...............................");
+		if (me.gfIcons != null) {
+			me.runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					me.gfIcons.stop();
+					me.gfIcons.setVisibility(View.INVISIBLE);
+				}			
+			});
+		}
+	}
+    
+    public void onStop() {
+        super.onStop();
     }
 }

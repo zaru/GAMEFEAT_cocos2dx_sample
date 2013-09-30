@@ -25,8 +25,13 @@
 @property (nonatomic, retain) GFIconController *gfIconController;
 @property (nonatomic, retain) GFIconView *iconView;
 
+//全画面型GameFeat
+- (void)addGameFeat;
 - (void)showGameFeat;
 - (void)hideGameFeat;
+
+//アイコン型GameFeat
+- (void)addIconGameFeat;
 - (void)showIconGameFeat;
 - (void)hideIconGameFeat;
 

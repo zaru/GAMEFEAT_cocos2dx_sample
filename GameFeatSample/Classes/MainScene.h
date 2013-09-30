@@ -14,7 +14,7 @@
 class MainScene : public cocos2d::CCLayer
 {
 protected:
-    void openGameFeat(CCObject* pSender);
+    void pushMenu(CCObject* pSender);
     
     enum {
         tag_gamefeat = 1,

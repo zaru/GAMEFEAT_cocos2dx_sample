@@ -17,11 +17,9 @@ using namespace cocos2d;
 
 #define GF_SITE_ID @"1580"
 
-const char* NativeBridge::getAppVersion()
-{
-    return "iPhone";
-}
-
+/**
+ * オファーウォール型GameFeat表示
+ */
 void NativeBridge::showGameFeat()
 {
     AppController *appController = (AppController*)[[UIApplication sharedApplication] delegate];
@@ -29,6 +27,9 @@ void NativeBridge::showGameFeat()
     NSLog(@"showGameFeat");
 }
 
+/**
+ * 全画面型GameFeat表示
+ */
 void NativeBridge::showAllGameFeat()
 {
     AppController *appController = (AppController*)[[UIApplication sharedApplication] delegate];
@@ -36,6 +37,9 @@ void NativeBridge::showAllGameFeat()
     NSLog(@"showAllGameFeat");
 }
 
+/**
+ * 全画面型GameFeat非表示
+ */
 void NativeBridge::hideAllGameFeat()
 {
     AppController *appController = (AppController*)[[UIApplication sharedApplication] delegate];
@@ -43,6 +47,9 @@ void NativeBridge::hideAllGameFeat()
     NSLog(@"hideAllGameFeat");
 }
 
+/**
+ * アイコン型GameFeat表示
+ */
 void NativeBridge::showIconGameFeat()
 {
     AppController *appController = (AppController*)[[UIApplication sharedApplication] delegate];
@@ -50,6 +57,9 @@ void NativeBridge::showIconGameFeat()
     NSLog(@"showIconGameFeat");
 }
 
+/**
+ * アイコン型GameFeat非表示
+ */
 void NativeBridge::hideIconGameFeat()
 {
     AppController *appController = (AppController*)[[UIApplication sharedApplication] delegate];

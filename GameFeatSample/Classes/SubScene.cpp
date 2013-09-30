@@ -45,12 +45,14 @@ bool SubScene::init()
     return true;
 }
 
+//メイン画面へ戻る
 void SubScene::backMain(CCObject* pSender)
 {
     int tag = ((CCMenuItem *)(pSender))->getTag();
+    
     if (tag == tag_back)
     {
-        //隠す
+        //全画面型GameFeat削除
         NativeBridge::hideAllGameFeat();
         
         CCScene* scene = MainScene::scene();

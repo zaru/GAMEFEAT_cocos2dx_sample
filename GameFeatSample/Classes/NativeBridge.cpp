@@ -17,24 +17,9 @@
 using namespace std;
 using namespace cocos2d;
 
-const char* NativeBridge::getAppVersion()
-{
-    JniMethodInfo t;
-    const char* ret = NULL;
-    
-    if (JniHelper::getStaticMethodInfo(t, CLASS_NAME, "getAppVersionInJava", "()Ljava/lang/String;"))
-    {
-        jstring jstr = (jstring)t.env->CallStaticObjectMethod(t.classID,t.methodID);
-        std::string sstr = JniHelper::jstring2string(jstr);
-        t.env->DeleteLocalRef(t.classID);
-        t.env->DeleteLocalRef(jstr);
-        
-        CCString* cstr = CCString::create(sstr.c_str());
-        ret = cstr->getCString();
-    }
-    return ret;
-}
-
+/**
+ * オファーウォール型GameFeat表示
+ */
 void NativeBridge::showGameFeat()
 {
     JniMethodInfo t;
@@ -45,6 +30,9 @@ void NativeBridge::showGameFeat()
     }
 }
 
+/**
+ * 全画面型GameFeat表示
+ */
 void NativeBridge::showAllGameFeat()
 {
     JniMethodInfo t;
@@ -55,10 +43,22 @@ void NativeBridge::showAllGameFeat()
     }
 }
 
+/**
+ * 全画面型GameFeat非表示
+ */
 void NativeBridge::hideAllGameFeat()
 {
+    JniMethodInfo t;
+    
+    if (JniHelper::getStaticMethodInfo(t, CLASS_NAME, "hideAllGameFeatJNI", "()V"))
+    {
+        t.env->CallStaticVoidMethod(t.classID, t.methodID);
+    }
 }
 
+/**
+ * アイコン型GameFeat表示
+ */
 void NativeBridge::showIconGameFeat()
 {
     JniMethodInfo t;
@@ -69,6 +69,15 @@ void NativeBridge::showIconGameFeat()
     }
 }
 
+/**
+ * アイコン型GameFeat非表示
+ */
 void NativeBridge::hideIconGameFeat()
 {
+    JniMethodInfo t;
+    
+    if (JniHelper::getStaticMethodInfo(t, CLASS_NAME, "hideIconGameFeatJNI", "()V"))
+    {
+        t.env->CallStaticVoidMethod(t.classID, t.methodID);
+    }
 }
