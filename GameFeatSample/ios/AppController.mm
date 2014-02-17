@@ -18,6 +18,7 @@
 @synthesize window;
 @synthesize viewController;
 
+// GAMEFEAT MediaID
 #define GF_SITE_ID @"1580"
 
 #pragma mark -
@@ -78,6 +79,10 @@ static AppDelegate s_sharedApplication;
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+    
+    // GF Activate
+    [GFController activateGF:GF_SITE_ID useCustom:YES useIcon:YES usePopup:YES];
+    
     cocos2d::CCDirector::sharedDirector()->resume();
 }
 
@@ -146,14 +151,11 @@ static AppDelegate s_sharedApplication;
  */
 - (void)addGameFeat {
 
-    // 全画面広告を初期化
-    self.popupView = [[GFPopupView alloc] init];
+    // 全画面広告を初期化（デリゲート版）
+    self.popupView = [[GFPopupView alloc] init:self];
     
     // 毎回表示
     [self.popupView setSchedule:1];
-    
-    //アニメーション追加
-    [self.popupView setAnimation:YES];
     
     // 全画面広告の表示
     if ([self.popupView loadAd:GF_SITE_ID]) {
@@ -171,19 +173,18 @@ static AppDelegate s_sharedApplication;
     self.gfIconController = [[GFIconController alloc] init];
     
     // アイコンの自動更新間隔を指定
-    [self.gfIconController setRefreshTiming:10];
-    
-    // アプリ名テキストの色指定
-    [self.gfIconController setAppNameColor:[UIColor redColor]];
+    [self.gfIconController setRefreshTiming:30];
     
     // アイコンの配置位置を設定
     {
-        CGRect r = [[UIScreen mainScreen] bounds];
-        
-        self.iconView = [[[GFIconView alloc] initWithFrame:CGRectMake(18, 150, 57, 57)] autorelease];
-        self.iconView.center = CGPointMake(r.size.width/2, r.size.height*6/7);
-        [self.gfIconController addIconView:self.iconView];
-        [viewController.view addSubview:self.iconView];
+        GFIconView *iconView = [[[GFIconView alloc] initWithFrame:CGRectMake(10, 10, 60, 60)] autorelease];
+        [self.gfIconController addIconView:iconView];
+        [viewController.view addSubview:iconView];
+    }
+    {
+        GFIconView *iconView = [[[GFIconView alloc] initWithFrame:CGRectMake(80, 10, 60, 60)] autorelease];
+        [self.gfIconController addIconView:iconView];
+        [viewController.view addSubview:iconView];
     }
     
     [self.gfIconController loadAd:GF_SITE_ID];
@@ -225,6 +226,21 @@ static AppDelegate s_sharedApplication;
     if (self.iconView) {
         [self.iconView removeFromSuperview];
     }
+}
+
+// 全画面広告が表示された際に実行される
+- (void)didShowGameFeatPopup{
+    NSLog(@"didShowGameFeatPopup");
+}
+
+// 全画面広告が閉じられた際に実行される
+- (void)didCloseGameFeatPopup{
+    NSLog(@"didCloseGameFeatPopup");
+}
+
+// 全画面広告が表示できなかった際に実行される
+- (void)failGameFeatPopupData{
+    NSLog(@"failGameFeatPopupData");
 }
 
 @end
