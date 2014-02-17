@@ -151,14 +151,11 @@ static AppDelegate s_sharedApplication;
  */
 - (void)addGameFeat {
 
-    // 全画面広告を初期化
-    self.popupView = [[GFPopupView alloc] init];
+    // 全画面広告を初期化（デリゲート版）
+    self.popupView = [[GFPopupView alloc] init:self];
     
     // 毎回表示
     [self.popupView setSchedule:1];
-    
-    //アニメーション追加
-    [self.popupView setAnimation:YES];
     
     // 全画面広告の表示
     if ([self.popupView loadAd:GF_SITE_ID]) {
@@ -229,6 +226,21 @@ static AppDelegate s_sharedApplication;
     if (self.iconView) {
         [self.iconView removeFromSuperview];
     }
+}
+
+// 全画面広告が表示された際に実行される
+- (void)didShowGameFeatPopup{
+    NSLog(@"didShowGameFeatPopup");
+}
+
+// 全画面広告が閉じられた際に実行される
+- (void)didCloseGameFeatPopup{
+    NSLog(@"didCloseGameFeatPopup");
+}
+
+// 全画面広告が表示できなかった際に実行される
+- (void)failGameFeatPopupData{
+    NSLog(@"failGameFeatPopupData");
 }
 
 @end
