@@ -176,19 +176,18 @@ static AppDelegate s_sharedApplication;
     self.gfIconController = [[GFIconController alloc] init];
     
     // アイコンの自動更新間隔を指定
-    [self.gfIconController setRefreshTiming:10];
-    
-    // アプリ名テキストの色指定
-    [self.gfIconController setAppNameColor:[UIColor redColor]];
+    [self.gfIconController setRefreshTiming:30];
     
     // アイコンの配置位置を設定
     {
-        CGRect r = [[UIScreen mainScreen] bounds];
-        
-        self.iconView = [[[GFIconView alloc] initWithFrame:CGRectMake(18, 150, 57, 57)] autorelease];
-        self.iconView.center = CGPointMake(r.size.width/2, r.size.height*6/7);
-        [self.gfIconController addIconView:self.iconView];
-        [viewController.view addSubview:self.iconView];
+        GFIconView *iconView = [[[GFIconView alloc] initWithFrame:CGRectMake(10, 10, 60, 60)] autorelease];
+        [self.gfIconController addIconView:iconView];
+        [viewController.view addSubview:iconView];
+    }
+    {
+        GFIconView *iconView = [[[GFIconView alloc] initWithFrame:CGRectMake(80, 10, 60, 60)] autorelease];
+        [self.gfIconController addIconView:iconView];
+        [viewController.view addSubview:iconView];
     }
     
     [self.gfIconController loadAd:GF_SITE_ID];
