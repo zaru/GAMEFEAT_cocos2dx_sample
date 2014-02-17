@@ -1,6 +1,6 @@
 package jp.shinji.GameFeatSample;
 
-import jp.basicinc.gamefeat.android.sdk.controller.GameFeatIconAdLoader;
+import jp.basicinc.gamefeat.android.sdk.controller.GameFeatAppController;
 import jp.basicinc.gamefeat.android.sdk.view.GameFeatIconView;
 import android.content.Context;
 import android.graphics.Color;
@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 public class GFIcons extends LinearLayout {
 	private Context mContext;
 	
-	GameFeatIconAdLoader myIconAdLoader;
+	GameFeatAppController gfAppController;
 	private GameFeatIconView icon1;
 	private GameFeatIconView icon2;
 	private GameFeatIconView icon3;
@@ -44,9 +44,12 @@ public class GFIcons extends LinearLayout {
 		int per = size_base / 6;
 
 		
-	 	myIconAdLoader = new GameFeatIconAdLoader();
-	 	myIconAdLoader.setIconTextColor(Color.WHITE);
-		
+        // GFコントローラ
+        gfAppController = new GameFeatAppController();
+        gfAppController.init(mContext);
+	
+        // アイコン広告の自動更新間隔（秒）指定：標準で30秒
+        gfAppController.setRefreshInterval(30);
 		
 	    // LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 	    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, per + 2 * (per / 7	));
@@ -59,37 +62,37 @@ public class GFIcons extends LinearLayout {
 		
 		icon1 = new GameFeatIconView(mContext);
 		icon1.setLayoutParams(icon_param);
-		icon1.addLoader(myIconAdLoader);
+		icon1.addLoader(gfAppController);
 		this.addView(icon1);
 		
 		icon2 = new GameFeatIconView(mContext);
 		icon2.setLayoutParams(icon_param);
-		icon2.addLoader(myIconAdLoader);
+		icon2.addLoader(gfAppController);
 		this.addView(icon2);
 		
 		icon3 = new GameFeatIconView(mContext);
 		icon3.setLayoutParams(icon_param);
-		icon3.addLoader(myIconAdLoader);
+		icon3.addLoader(gfAppController);
 		this.addView(icon3);
 
 		icon4 = new GameFeatIconView(mContext);
 		icon4.setLayoutParams(icon_param);
-		icon4.addLoader(myIconAdLoader);
+		icon4.addLoader(gfAppController);
 		this.addView(icon4);
 		
 		icon5 = new GameFeatIconView(mContext);
 		icon5.setLayoutParams(icon_param);
-		icon5.addLoader(myIconAdLoader);
+		icon5.addLoader(gfAppController);
 		this.addView(icon5);
 
 	}
 	
 	public void resume() {
-		myIconAdLoader.loadAd(mContext);
+		gfAppController.startIconAd();
 	}
 	
 	public void stop() {
-		myIconAdLoader.stopAd();
+		gfAppController.stopIconAd();
 	}
 
 }
