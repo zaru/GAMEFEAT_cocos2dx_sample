@@ -19,7 +19,7 @@ local.properties
 .classpath
 .project
 GameFeatSample/proj.android/.settings/
-
+GameFeatSample/proj.android/obj/
 
 i*.xcodeproj/*
 !*.xcodeproj/project.pbxproj
