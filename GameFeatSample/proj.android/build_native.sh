@@ -1,7 +1,11 @@
 APPNAME="GameFeatSample"
 
-NDK_ROOT=/Users/nakamurashinji/Documents/android-ndk-r9
-COCOS2DX_ROOT=/Users/nakamurashinji/Documents/cocos2d-2.1rc0-x-2.1.3
+# 自身のNDKへのファイルパス変更をしてください
+NDK_ROOT=/Users/zaru/Documents/develop/android-ndk-r9d
+
+# 自身のcocos2d-xへファイルパスを変更してください
+COCOS2DX_ROOT=/Users/zaru/Documents/develop/cocos2d-x-2.1.4
+
 GAME_ROOT=$COCOS2DX_ROOT/GameFeatSample
 GAME_ANDROID_ROOT=$GAME_ROOT/proj.android
 RESOURCE_ROOT=$GAME_ROOT/Resources
