@@ -13,14 +13,20 @@ GAMEFEATのSDKをcocos2d-x（iOS / Android）で動かすサンプルアプリ�
 ### iOSの場合
 
 - GAMEFEAT SDKをXcodeプロジェクトに追加します
-- サイトIDを適宜変更をしてください
+	- 必要なFramework（サンプルアプリには追加済みです）
+	- Foundation.framework
+	- UIKit.framework
+	- CoreTelephony.framework
+	- AdSupport.framework（Optional）
+	- StoreKit.framework（Optional）
+- メディアIDを適宜変更をしてください
 - ビルドすればサンプルアプリが起動します
 
 ### Androidの場合
 
 - EclipseにプロジェクトをImportしてください
 - GAMEFEAT SDKのjarファイルをlibsに配置します
-- サイトIDを適宜変更をしてください
+- メディアIDを適宜変更をしてください
 - /proj.android/build_native.shを開いて、NDKとcocos2d-xSDKのファイルパスを適宜変更してください
 - ./build_native.sh を実行してください
 - ビルドすればサンプルアプリが起動します

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		573C777D1923842400DA2F63 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 573C777C1923842400DA2F63 /* AdSupport.framework */; };
+		573C777D1923842400DA2F63 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 573C777C1923842400DA2F63 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5DA5215617DAF16F00E9E129 /* GameFeatButton1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DA5215417DAF16F00E9E129 /* GameFeatButton1.png */; };
 		5DA5215717DAF16F00E9E129 /* GameFeatButton2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DA5215517DAF16F00E9E129 /* GameFeatButton2.png */; };
 		5DB8304617D71D97007413A9 /* NativeBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8304517D71D97007413A9 /* NativeBridge.mm */; };
