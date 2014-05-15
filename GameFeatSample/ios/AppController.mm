@@ -173,7 +173,7 @@ static AppDelegate s_sharedApplication;
     self.gfIconController = [[GFIconController alloc] init];
     
     // アイコンの自動更新間隔を指定
-    [self.gfIconController setRefreshTiming:30];
+    [self.gfIconController setRefreshTiming:10];
     
     // アイコンの配置位置を設定
     {
@@ -215,7 +215,7 @@ static AppDelegate s_sharedApplication;
 - (void)showIconGameFeat {
     if ([self.gfIconController.arrIconView count] == 0) {
         [self addIconGameFeat];
-    } else {
+    } else if (self.gfIconController.isTimerActive == NO) {
         [self.gfIconController loadAd:GF_SITE_ID];
     }
     [self.gfIconController visibleIconAd];
