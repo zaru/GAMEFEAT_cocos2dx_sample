@@ -210,22 +210,23 @@ static AppDelegate s_sharedApplication;
 }
 
 /**
- * アイコン型GameFeat削除
+ * アイコン型GameFeat表示
  */
 - (void)showIconGameFeat {
-    if (self.iconView) {
-        [self hideIconGameFeat];
+    if ([self.gfIconController.arrIconView count] == 0) {
+        [self addIconGameFeat];
+    } else {
+        [self.gfIconController loadAd:GF_SITE_ID];
     }
-    [self addIconGameFeat];
+    [self.gfIconController visibleIconAd];
 }
 
 /**
- * アイコン型GameFeat削除
+ * アイコン型GameFeat非表示
  */
 - (void)hideIconGameFeat {
-    if (self.iconView) {
-        [self.iconView removeFromSuperview];
-    }
+    [self.gfIconController stopAd];
+    [self.gfIconController invisibleIconAd];
 }
 
 // 全画面広告が表示された際に実行される

@@ -15,6 +15,8 @@ class MainScene : public cocos2d::CCLayer
 {
 protected:
     void pushMenu(CCObject* pSender);
+    void iconHide(CCObject* pSender);
+    void iconShow(CCObject* pSender);
     
     enum {
         tag_gamefeat = 1,

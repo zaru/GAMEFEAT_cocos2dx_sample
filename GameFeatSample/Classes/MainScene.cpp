@@ -41,7 +41,18 @@ bool MainScene::init()
     nextButton->setPosition(ccp(size.width/2, size.height/2));
     nextButton->setTag(tag_next);
     
-    CCMenu* menu = CCMenu::create(gamefeatButton,nextButton,NULL);
+    
+    //アイコン非表示
+    CCMenuItemImage* iconHideButton = CCMenuItemImage::create("btIconHide.png", "btIconHide.png", this, menu_selector(MainScene::iconHide));
+    iconHideButton->setPosition(ccp(size.width/2 - 140, size.height/4));
+    iconHideButton->setTag(tag_next);
+    
+    //アイコン表示
+    CCMenuItemImage* iconShowButton = CCMenuItemImage::create("btIconShow.png", "btIconShow.png", this, menu_selector(MainScene::iconShow));
+    iconShowButton->setPosition(ccp(size.width/2 + 140, size.height/4));
+    iconShowButton->setTag(tag_next);
+    
+    CCMenu* menu = CCMenu::create(gamefeatButton,nextButton,iconHideButton,iconShowButton,NULL);
     menu->setPosition(CCPointZero);
     this->addChild(menu);
     
@@ -73,4 +84,20 @@ void MainScene::pushMenu(CCObject* pSender)
         CCScene* scene = SubScene::scene();
         CCDirector::sharedDirector()->replaceScene(scene);
     }
+}
+
+/**
+ * アイコン広告表示
+ */
+void MainScene::iconShow(CCObject* pSender)
+{
+    NativeBridge::showIconGameFeat();
+}
+
+/**
+ * アイコン広告非表示
+ */
+void MainScene::iconHide(CCObject* pSender)
+{
+    NativeBridge::hideIconGameFeat();
 }
