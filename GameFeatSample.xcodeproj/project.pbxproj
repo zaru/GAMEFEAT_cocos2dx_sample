@@ -81,7 +81,6 @@
 		5DC3D57017D9ABCE005B6F94 /* bGameFeat2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3D56E17D9ABCE005B6F94 /* bGameFeat2.png */; };
 		5DC3D57317D9AD23005B6F94 /* backButton1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3D57117D9AD23005B6F94 /* backButton1.png */; };
 		5DC3D57417D9AD23005B6F94 /* backButton2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3D57217D9AD23005B6F94 /* backButton2.png */; };
-		5DC3D57A17D9B70B005B6F94 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3D57917D9B70B005B6F94 /* ViewController.m */; };
 		5DF50FD017D70605005A4E4A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DF50FCF17D70605005A4E4A /* QuartzCore.framework */; };
 		5DF50FD217D70605005A4E4A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DF50FD117D70605005A4E4A /* OpenGLES.framework */; };
 		5DF50FD417D70605005A4E4A /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DF50FD317D70605005A4E4A /* OpenAL.framework */; };
@@ -422,8 +421,6 @@
 		5DC3D56E17D9ABCE005B6F94 /* bGameFeat2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bGameFeat2.png; path = Resources/bGameFeat2.png; sourceTree = "<group>"; };
 		5DC3D57117D9AD23005B6F94 /* backButton1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backButton1.png; path = Resources/backButton1.png; sourceTree = "<group>"; };
 		5DC3D57217D9AD23005B6F94 /* backButton2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backButton2.png; path = Resources/backButton2.png; sourceTree = "<group>"; };
-		5DC3D57817D9B70B005B6F94 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ios/ViewController.h; sourceTree = "<group>"; };
-		5DC3D57917D9B70B005B6F94 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ios/ViewController.m; sourceTree = "<group>"; };
 		5DF50FCC17D70605005A4E4A /* GameFeatSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameFeatSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DF50FCF17D70605005A4E4A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5DF50FD117D70605005A4E4A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -1198,8 +1195,6 @@
 				5DF50FFA17D70605005A4E4A /* AppController.mm */,
 				5DF50FFC17D70605005A4E4A /* RootViewController.h */,
 				5DF50FFD17D70605005A4E4A /* RootViewController.mm */,
-				5DC3D57817D9B70B005B6F94 /* ViewController.h */,
-				5DC3D57917D9B70B005B6F94 /* ViewController.m */,
 				5DF50FFF17D70605005A4E4A /* main.m */,
 			);
 			name = ios;
@@ -2638,7 +2633,6 @@
 				5DB8304617D71D97007413A9 /* NativeBridge.mm in Sources */,
 				5DB8304E17D72357007413A9 /* MainScene.cpp in Sources */,
 				5DC3D56C17D9AAD7005B6F94 /* SubScene.cpp in Sources */,
-				5DC3D57A17D9B70B005B6F94 /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
