@@ -10,12 +10,11 @@
 #include "cocoa/CCString.h"
 using namespace cocos2d;
 #include "AppController.h"
-#include "ViewController.h"
 
 #import <GameFeatKit/GFView.h>
 #import <GameFeatKit/GFController.h>
 
-#define GF_SITE_ID @"1580"
+#define GF_SITE_ID @"213"
 
 /**
  * オファーウォール型GameFeat表示
