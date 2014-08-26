@@ -6,7 +6,7 @@ GAMEFEATのSDKをcocos2d-x（iOS / Android）で動かすサンプルアプリ�
 ## 対応バージョン
 
 - cocos2d-x 2.x.x
-- GAMEFEAT SDK v3.2.0
+- GAMEFEAT SDK v3.3.0
 
 ## 動作方法
 
@@ -25,6 +25,7 @@ GAMEFEATのSDKをcocos2d-x（iOS / Android）で動かすサンプルアプリ�
 ### Androidの場合
 
 - EclipseにプロジェクトをImportしてください
+- GooglePlayServiceライブラリを追加します
 - GAMEFEAT SDKのjarファイルをlibsに配置します
 - メディアIDを適宜変更をしてください
 - /proj.android/build_native.shを開いて、NDKとcocos2d-xSDKのファイルパスを適宜変更してください
